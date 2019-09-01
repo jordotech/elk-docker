@@ -1,6 +1,6 @@
-version: '2'
-services:
+version: "3.5"
 
+services:
   elasticsearch:
     build:
       context: elasticsearch/
@@ -8,12 +8,10 @@ services:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
       - elasticsearch:/usr/share/elasticsearch/data/:rw
     ports:
-      - "127.0.0.1:9200:9200"
-      - "127.0.0.1:9300:9300"
+      - "9200:9200"
+      - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx1g -Xms1g"
-    networks:
-      - elk
 
   logstash:
     build:
@@ -24,12 +22,10 @@ services:
       #- /home/proxy_logs:/home/proxy_logs:ro
     ports:
       - "1025:1025/udp"
-      - "127.0.0.1:5000:5000"
-      - "127.0.0.1:9600:9600"
+      - "5000:5000"
+      - "9600:9600"
     environment:
       LS_JAVA_OPTS: "-Xmx1g -Xms1g"
-    networks:
-      - elk
     depends_on:
       - elasticsearch
   kibana:
@@ -38,15 +34,10 @@ services:
     volumes:
       - ./kibana/config/:/usr/share/kibana/config:ro
     ports:
-      - "127.0.0.1:5601:5601"
-    networks:
-      - elk
+      - "5601:5601"
     depends_on:
       - elasticsearch
+
 volumes:
   elasticsearch:
-     driver: local
-
-networks:
-  elk:
-    driver: bridge
+    driver: local
