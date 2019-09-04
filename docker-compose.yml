@@ -2,6 +2,7 @@ version: "3.5"
 
 services:
   elasticsearch:
+    container_name: el
     build:
       context: elasticsearch/
     volumes:
@@ -14,6 +15,7 @@ services:
       ES_JAVA_OPTS: "-Xmx1g -Xms1g"
 
   logstash:
+    container_name: logstash
     build:
       context: logstash/
     volumes:
@@ -22,6 +24,7 @@ services:
       #- /home/proxy_logs:/home/proxy_logs:ro
     ports:
       - "1025:1025/udp"
+      - "5959:5959"
       - "1026:1026/tcp"
       - "5000:5000"
       - "9600:9600"
