@@ -16,6 +16,7 @@ services:
 
   logstash:
     container_name: logstash
+    command: /usr/share/logstash/bin/logstash
     build:
       context: logstash/
     volumes:

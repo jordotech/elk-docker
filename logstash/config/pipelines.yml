@@ -2,8 +2,6 @@
 # For more information on multiple pipelines, see the documentation:
 #   https://www.elastic.co/guide/en/logstash/current/multiple-pipelines.html
 
-- pipeline.id: main
-  path.config: "/usr/share/logstash/pipeline"
 - pipeline.id: django
   path.config: "/usr/share/logstash/pipeline/django.conf"
 - pipeline.id: nginx
