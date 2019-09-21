@@ -35,6 +35,7 @@ services:
     depends_on:
       - elasticsearch
   kibana:
+    container_name: kibana
     build:
       context: kibana/
     volumes:
