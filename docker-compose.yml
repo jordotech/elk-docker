@@ -22,10 +22,8 @@ services:
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml:ro
-      #- ./logstash/config/nginx_template2.json:/usr/share/logstash/config/nginx_template2.json:ro
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
       - ./logstash/patterns:/usr/share/logstash/patterns:ro
-      #- /home/proxy_logs:/home/proxy_logs:ro
     ports:
       - "1025:1025/udp"
       - "5959:5959"
